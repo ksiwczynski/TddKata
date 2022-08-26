@@ -11,6 +11,7 @@ namespace TddKata
 		public int Add(string v)
 		{
 			string delimeter = ",";
+			List<int> negativeNums = new List<int>();
 
 			if (String.IsNullOrWhiteSpace(v))
 			{
@@ -31,7 +32,17 @@ namespace TddKata
 
 			foreach (string s in vals)
 			{
-				result += Int32.Parse(s);
+				int p = Int32.Parse(s);
+				if (p < 0)
+				{
+					negativeNums.Add(p);
+				}
+				result += p;
+			}
+
+			if (negativeNums.Any())
+			{
+				throw new Exception("negatives not allowed. negative nums: " + String.Join(",", negativeNums));
 			}
 
 			return result;

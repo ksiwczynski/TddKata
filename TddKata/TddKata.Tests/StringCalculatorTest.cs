@@ -57,5 +57,12 @@ namespace TddKata.Tests
 			var calc = new StringCalculator();
 			Assert.That(calc.Add("//;\n1;2"), Is.EqualTo(3));
 		}
+
+		[Test]
+		public void AddNegativeNumbersTest()
+		{
+			var calc = new StringCalculator();
+			Assert.That(() => calc.Add("-1,2"), Throws.TypeOf<Exception>().With.Message.Contains("negatives not allowed"));
+		}
 	}
 }
