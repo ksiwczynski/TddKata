@@ -17,12 +17,14 @@ namespace TddKata
 
 			string[] vals = v.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
-			if (vals.Length == 1)
+			int result = 0;
+
+			foreach (string s in vals)
 			{
-				return Int32.Parse(vals[0]);
+				result += Int32.Parse(s);
 			}
 
-			return Int32.Parse(vals[0]) + Int32.Parse(vals[1]);
+			return result;
 		}
 	}
 }
