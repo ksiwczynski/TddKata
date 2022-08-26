@@ -71,5 +71,19 @@ namespace TddKata.Tests
 			var calc = new StringCalculator();
 			Assert.That(calc.Add("1002,2"), Is.EqualTo(2));
 		}
+
+		[Test]
+		public void AddNumbersWithLongDelimeterTest()
+		{
+			var calc = new StringCalculator();
+			Assert.That(calc.Add("//[***]\n1***2***3"), Is.EqualTo(6));
+		}
+
+		[Test]
+		public void AddNumbersWithManyDelimetersTest()
+		{
+			var calc = new StringCalculator();
+			Assert.That(calc.Add("//[*][%]\n1*2%3"), Is.EqualTo(6));
+		}
 	}
 }

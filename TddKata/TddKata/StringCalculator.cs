@@ -20,8 +20,15 @@ namespace TddKata
 
 			if (v.StartsWith("//"))
 			{
-				delimeter = v.Substring(2, 1);
-				v = v.Substring(4);
+				if (v.Contains("["))
+				{
+					delimeter = v.Substring(v.IndexOf("[") + 1, v.IndexOf("]") - v.IndexOf("[") - 1);
+				}
+				else
+				{
+					delimeter = v.Substring(2, 1);
+				}
+				v = v.Substring(v.IndexOf("\n") + 1);
 			}
 
 			v = v.Replace("\n", delimeter);
