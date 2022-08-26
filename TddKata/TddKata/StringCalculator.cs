@@ -8,48 +8,40 @@ namespace TddKata
 {
 	public class StringCalculator
 	{
-		public int Add(string v)
+		public int Add(string inputValue)
 		{
 			string delimeter = ",";
 			List<int> negativeNums = new List<int>();
-			List<string> custDelimeters = new List<string>();
+			List<string> custDelimeters = new List<string> { "\n" };
 
-			if (String.IsNullOrWhiteSpace(v))
+			if (String.IsNullOrWhiteSpace(inputValue))
 			{
 				return 0;
 			}
 
-			if (v.StartsWith("//"))
+			if (inputValue.StartsWith("//"))
 			{
-				if (v.Contains("["))
+				if (inputValue.Contains("["))
 				{
-					if (v.Count(x => x == '[') > 1)
+					string[] delims = inputValue.Substring(inputValue.IndexOf("[") + 1, inputValue.LastIndexOf("]") - inputValue.IndexOf("[") - 1).Split("][", StringSplitOptions.RemoveEmptyEntries);
+					foreach (string d in delims)
 					{
-						string[] delims = v.Substring(v.IndexOf("[") + 1, v.LastIndexOf("]") - v.IndexOf("[") - 1).Split("][", StringSplitOptions.RemoveEmptyEntries);
-						foreach (string d in delims)
-						{
-							custDelimeters.Add(d);
-						}
-					}
-					else
-					{
-						delimeter = v.Substring(v.IndexOf("[") + 1, v.IndexOf("]") - v.IndexOf("[") - 1);
+						custDelimeters.Add(d);
 					}
 				}
 				else
 				{
-					delimeter = v.Substring(2, 1);
+					delimeter = inputValue.Substring(2, 1);
 				}
-				v = v.Substring(v.IndexOf("\n") + 1);
+				inputValue = inputValue.Substring(inputValue.IndexOf("\n") + 1);
 			}
 
-			v = v.Replace("\n", delimeter);
 			foreach (string d in custDelimeters)
 			{
-				v = v.Replace(d, delimeter);
+				inputValue = inputValue.Replace(d, delimeter);
 			}
 
-			string[] vals = v.Split(delimeter, StringSplitOptions.RemoveEmptyEntries);
+			string[] vals = inputValue.Split(delimeter, StringSplitOptions.RemoveEmptyEntries);
 
 			int result = 0;
 
