@@ -10,14 +10,22 @@ namespace TddKata
 	{
 		public int Add(string v)
 		{
+			string delimeter = ",";
+
 			if (String.IsNullOrWhiteSpace(v))
 			{
 				return 0;
 			}
 
-			v = v.Replace("\n", ",");
+			if (v.StartsWith("//"))
+			{
+				delimeter = v.Substring(2, 1);
+				v = v.Substring(4);
+			}
 
-			string[] vals = v.Split(",", StringSplitOptions.RemoveEmptyEntries);
+			v = v.Replace("\n", delimeter);
+
+			string[] vals = v.Split(delimeter, StringSplitOptions.RemoveEmptyEntries);
 
 			int result = 0;
 

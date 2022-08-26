@@ -45,10 +45,17 @@ namespace TddKata.Tests
 		}
 
 		[Test]
-		public void AddNumbersWithNewLine()
+		public void AddNumbersWithNewLineTest()
 		{
 			var calc = new StringCalculator();
 			Assert.That(calc.Add("1\n2,3"), Is.EqualTo(6));
+		}
+
+		[Test]
+		public void AddNumbersWithCustomDelimeterTest()
+		{
+			var calc = new StringCalculator();
+			Assert.That(calc.Add("//;\n1;2"), Is.EqualTo(3));
 		}
 	}
 }
