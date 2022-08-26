@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-	<PropertyGroup>
-		<!-- Project is not a test project -->
-		<SonarQubeTestProject>false</SonarQubeTestProject>
-	</PropertyGroup>
-
 </Project>
