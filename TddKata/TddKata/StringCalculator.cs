@@ -12,6 +12,7 @@ namespace TddKata
 		{
 			string delimeter = ",";
 			List<int> negativeNums = new List<int>();
+			List<string> custDelimeters = new List<string>();
 
 			if (String.IsNullOrWhiteSpace(v))
 			{
@@ -22,7 +23,18 @@ namespace TddKata
 			{
 				if (v.Contains("["))
 				{
-					delimeter = v.Substring(v.IndexOf("[") + 1, v.IndexOf("]") - v.IndexOf("[") - 1);
+					if (v.Count(x => x == '[') > 1)
+					{
+						string[] delims = v.Substring(v.IndexOf("[") + 1, v.LastIndexOf("]") - v.IndexOf("[") - 1).Split("][", StringSplitOptions.RemoveEmptyEntries);
+						foreach (string d in delims)
+						{
+							custDelimeters.Add(d);
+						}
+					}
+					else
+					{
+						delimeter = v.Substring(v.IndexOf("[") + 1, v.IndexOf("]") - v.IndexOf("[") - 1);
+					}
 				}
 				else
 				{
@@ -32,6 +44,10 @@ namespace TddKata
 			}
 
 			v = v.Replace("\n", delimeter);
+			foreach (string d in custDelimeters)
+			{
+				v = v.Replace(d, delimeter);
+			}
 
 			string[] vals = v.Split(delimeter, StringSplitOptions.RemoveEmptyEntries);
 
