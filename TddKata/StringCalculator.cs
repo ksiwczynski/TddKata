@@ -21,7 +21,7 @@ namespace TddKata
 
 			if (inputValue.StartsWith("//"))
 			{
-				if (inputValue.Contains("["))
+				if (inputValue.Contains('['))
 				{
 					string[] delims = inputValue.Substring(inputValue.IndexOf("[") + 1, inputValue.LastIndexOf("]") - inputValue.IndexOf("[") - 1).Split("][", StringSplitOptions.RemoveEmptyEntries);
 					foreach (string d in delims)
@@ -60,7 +60,7 @@ namespace TddKata
 
 			if (negativeNums.Any())
 			{
-				throw new Exception("negatives not allowed. negative nums: " + String.Join(",", negativeNums));
+				throw new ArgumentOutOfRangeException("negatives not allowed. negative nums: " + String.Join(",", negativeNums));
 			}
 
 			return result;
