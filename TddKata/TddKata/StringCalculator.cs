@@ -15,6 +15,8 @@ namespace TddKata
 				return 0;
 			}
 
+			v = v.Replace("\n", ",");
+
 			string[] vals = v.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
 			int result = 0;

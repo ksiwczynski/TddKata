@@ -43,5 +43,12 @@ namespace TddKata.Tests
 			var calc = new StringCalculator();
 			Assert.That(calc.Add("1,2,3,4,5,6,7,8,9"), Is.EqualTo(45));
 		}
+
+		[Test]
+		public void AddNumbersWithNewLine()
+		{
+			var calc = new StringCalculator();
+			Assert.That(calc.Add("1\n2,3"), Is.EqualTo(6));
+		}
 	}
 }
