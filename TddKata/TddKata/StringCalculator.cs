@@ -37,7 +37,10 @@ namespace TddKata
 				{
 					negativeNums.Add(p);
 				}
-				result += p;
+				if (p <= 1000)
+				{
+					result += p;
+				}
 			}
 
 			if (negativeNums.Any())

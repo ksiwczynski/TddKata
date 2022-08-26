@@ -64,5 +64,12 @@ namespace TddKata.Tests
 			var calc = new StringCalculator();
 			Assert.That(() => calc.Add("-1,2"), Throws.TypeOf<Exception>().With.Message.Contains("negatives not allowed"));
 		}
+
+		[Test]
+		public void AddTwoBigNumbersTest()
+		{
+			var calc = new StringCalculator();
+			Assert.That(calc.Add("1002,2"), Is.EqualTo(2));
+		}
 	}
 }
